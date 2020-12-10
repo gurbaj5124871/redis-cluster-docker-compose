@@ -18,6 +18,7 @@ jobs:
     - name: Check logs
       run: docker logs redis-cluster-init
 
-    - name: docker exec node-client node index.js
+    - name: run docker client
+      run: docker exec node-client node index.js
 
     
