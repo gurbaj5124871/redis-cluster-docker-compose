@@ -1,12 +1,6 @@
 version: '3'
 
 services:
-  node-client:
-    container_name: node-client
-    build: .
-    depends_on:
-      - redis-cluster-init
-
   redis-node-0:
     image: docker.io/bitnami/redis-cluster:6.0-debian-10
     volumes:
@@ -96,6 +90,12 @@ services:
       - 'REDIS_CLUSTER_REPLICAS=2'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5 redis-node-6 redis-node-7 redis-node-8'
       - 'REDIS_CLUSTER_CREATOR=yes'
+
+  node-client:
+    container_name: node-client
+    build: .
+    depends_on:
+      - redis-cluster-init
 
 volumes:
   redis-cluster_data-0:

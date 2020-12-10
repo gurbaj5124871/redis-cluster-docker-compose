@@ -15,9 +15,6 @@ jobs:
     - name: Check running containers
       run: docker ps -a
 
-    - name: Check logs
-      run: docker logs redis-cluster-init
-
     - name: run docker client
       run: docker exec node-client node index.js
 
