@@ -15,7 +15,15 @@ jobs:
     - name: Check running containers
       run: docker ps -a
 
-    - name: run docker client
-      run: docker exec node-client node index.js
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: "12.x"
+    
+    - name: Install Dependencies
+      run: npm Install --quiet
+
+    - name: Run node client
+      run: node index.js
 
     
