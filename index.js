@@ -1,15 +1,15 @@
 const Redis = require("ioredis");
 
 const hosts = [
-  "redis-node-0:6379",
-  "redis-node-1:6380",
-  "redis-node-2:6381",
-  "redis-node-3:6382",
-  "redis-node-4:6383",
-  "redis-node-5:6384",
-  "redis-node-6:6385",
-  "redis-node-7:6386",
-  "redis-node-8:6387",
+  "localhost:6380",
+  "localhost:6381",
+  "localhost:6382",
+  "localhost:6383",
+  "localhost:6384",
+  "localhost:6385",
+  "localhost:6386",
+  "localhost:6387",
+  "localhost:6388",
 ];
 const password = "waitroom";
 
@@ -24,6 +24,8 @@ const redis = new Redis.Cluster(
     },
   }
 );
+
+// const redis = new Redis(`redis://${hosts[0]}}`);
 
 redis
   .on("connect", () => {
