@@ -1,19 +1,22 @@
 const Redis = require("ioredis");
 
-const hosts =
-  "redis-node-0,redis-node-1,redis-node-2,redis-node-3,redis-node-4,redis-node-5,redis-node-6,redis-node-7,redis-node-8";
+const hosts = [
+  "redis-node-0:6379",
+  "redis-node-1:6380",
+  "redis-node-2:6381",
+  "redis-node-3:6382",
+  "redis-node-4:6383",
+  "redis-node-5:6384",
+  "redis-node-6:6385",
+  "redis-node-7:6386",
+  "redis-node-8:6387",
+];
 const password = "waitroom";
 
-console.log(
-  `inside index js: ${JSON.stringify(
-    hosts.split(",").map((host) => ({ host: `redis://${host}:6379` })),
-    null,
-    2
-  )}`
-);
+console.log(`hosts:: ${hosts.map((url) => `redis://${url}`)}`);
 
 const redis = new Redis.Cluster(
-  hosts.split(",").map((host) => ({ host: `redis://${host}:6379` })),
+  hosts.map((url) => `redis://${url}`),
   {
     redisOptions: {
       db: 0,
