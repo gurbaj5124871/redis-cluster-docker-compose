@@ -25,7 +25,9 @@ const redis = new Redis.Cluster(
 redis
   .on("connect", () => {
     console.info("Redis connected");
+    process.exit(0);
   })
   .on("error", (err) => {
     console.error(err);
+    process.exit(1);
   });

@@ -8,6 +8,8 @@ services:
     environment:
       - 'REDIS_PASSWORD=waitroom'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5 redis-node-6 redis-node-7 redis-node-8'
+    ports:
+      - 6379:6379
 
   redis-node-1:
     image: docker.io/bitnami/redis-cluster:6.0-debian-10
@@ -16,6 +18,8 @@ services:
     environment:
       - 'REDIS_PASSWORD=waitroom'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5 redis-node-6 redis-node-7 redis-node-8'
+    ports:
+      - 6379:6379
 
   redis-node-2:
     image: docker.io/bitnami/redis-cluster:6.0-debian-10
@@ -24,6 +28,8 @@ services:
     environment:
       - 'REDIS_PASSWORD=waitroom'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5 redis-node-6 redis-node-7 redis-node-8'
+    ports:
+      - 6379:6379
 
   redis-node-3:
     image: docker.io/bitnami/redis-cluster:6.0-debian-10
@@ -32,6 +38,8 @@ services:
     environment:
       - 'REDIS_PASSWORD=waitroom'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5 redis-node-6 redis-node-7 redis-node-8'
+    ports:
+      - 6379:6379
 
   redis-node-4:
     image: docker.io/bitnami/redis-cluster:6.0-debian-10
@@ -40,6 +48,8 @@ services:
     environment:
       - 'REDIS_PASSWORD=waitroom'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5 redis-node-6 redis-node-7 redis-node-8'
+    ports:
+      - 6379:6379
 
   redis-node-5:
     image: docker.io/bitnami/redis-cluster:6.0-debian-10
@@ -48,7 +58,9 @@ services:
     environment:
       - 'REDIS_PASSWORD=waitroom'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5 redis-node-6 redis-node-7 redis-node-8'
-    
+    ports:
+      - 6379:6379
+
   redis-node-6:
     image: docker.io/bitnami/redis-cluster:6.0-debian-10
     volumes:
@@ -56,6 +68,8 @@ services:
     environment:
       - 'REDIS_PASSWORD=waitroom'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5 redis-node-6 redis-node-7 redis-node-8'
+    ports:
+      - 6379:6379
 
   redis-node-7:
     image: docker.io/bitnami/redis-cluster:6.0-debian-10
@@ -64,6 +78,8 @@ services:
     environment:
       - 'REDIS_PASSWORD=waitroom'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5 redis-node-6 redis-node-7 redis-node-8'
+    ports:
+      - 6379:6379
 
   redis-node-8:
     image: docker.io/bitnami/redis-cluster:6.0-debian-10
@@ -72,7 +88,9 @@ services:
     environment:
       - 'REDIS_PASSWORD=waitroom'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5 redis-node-6 redis-node-7 redis-node-8'
-
+    ports:
+      - 6379:6379
+      
   redis-cluster-init:
     image: docker.io/bitnami/redis-cluster:6.0-debian-10
     depends_on:
