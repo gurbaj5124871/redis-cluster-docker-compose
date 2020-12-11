@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Docker build for rocket
-        run: docker build -f Dockerfile 
+        run: docker build .
 
       - name: Run test suite
         run: docker exec npm run test
