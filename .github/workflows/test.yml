@@ -1,0 +1,37 @@
+name: Running Tests
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  tests:
+    name: tests
+    runs-on: ubuntu-latest
+    container: node:12.20.0-alpine3.10
+
+    services:
+      redis:
+        # Docker Hub image
+        image: bitnami/redis-cluster:latest
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Installing Dependencies
+        run: npm ci
+
+      - name: Running Tests
+        run: node index.js
