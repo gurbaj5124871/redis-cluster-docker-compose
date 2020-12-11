@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Pull Redis Docker container
-        run: run: docker-compose -f redis-instance.yml up -d
+        run: docker-compose -f redis-instance.yml up -d
 
       - name: Installing Dependencies
         run: npm ci
