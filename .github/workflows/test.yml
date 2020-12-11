@@ -26,27 +26,29 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Docker build for rocket and Running Tests
-        run: docker build .
+      - name: Install Default JDK
+        run: apt-get install default-jdk
 
-      # - name: Run test suite
-      #   run: docker exec npm run test
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
 
-      # - name: Installing Dependencies
-      #   run: npm ci
+      - name: Installing Dependencies
+        run: npm ci
 
-      # - name: Connect to Redis
-      #   run: node index.js
-      #   env:
-      #     # The hostname used to communicate with the Redis service container
-      #     REDIS_HOST: redis
-      #     # The default Redis port
-      #     REDIS_PORT: 6379
+      - name: Connect to Redis
+        run: node index.js
+        env:
+          # The hostname used to communicate with the Redis service container
+          REDIS_HOST: redis
+          # The default Redis port
+          REDIS_PORT: 6379
 
-      # - name: Run Tests
-      #   run: npm run test
-      #   env:
-      #     # The hostname used to communicate with the Redis service container
-      #     REDIS_HOST: redis
-      #     # The default Redis port
-      #     REDIS_PORT: 6379
+      - name: Run Tests
+        run: npm run test
+        env:
+          # The hostname used to communicate with the Redis service container
+          REDIS_HOST: redis
+          # The default Redis port
+          REDIS_PORT: 6379
