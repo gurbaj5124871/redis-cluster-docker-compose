@@ -42,3 +42,11 @@ jobs:
           REDIS_HOST: redis
           # The default Redis port
           REDIS_PORT: 6379
+
+      - name: Run Tests
+        run: npm run test
+        env:
+          # The hostname used to communicate with the Redis service container
+          REDIS_HOST: redis
+          # The default Redis port
+          REDIS_PORT: 6379
