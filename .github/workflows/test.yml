@@ -23,18 +23,15 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
-      rocket:
-        container_name: rocket
-        build: .
-        depends_on:
-          - redis
-  
     steps:
       - uses: actions/checkout@v2
 
+      - name: Docker build for rocket
+        run: docker build -f Dockerfile 
+
       - name: Run test suite
-        run: docker exec rocket npm run test
-        
+        run: docker exec npm run test
+
       # - name: Installing Dependencies
       #   run: npm ci
 
@@ -53,3 +50,6 @@ jobs:
       #     REDIS_HOST: redis
       #     # The default Redis port
       #     REDIS_PORT: 6379
+branding:
+  icon: 'check-circle'
+  color: 'green'
