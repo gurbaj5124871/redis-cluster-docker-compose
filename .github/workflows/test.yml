@@ -29,8 +29,11 @@ jobs:
       - name: Docker build for rocket
         run: docker build .
 
-      - name: Run test suite
-        run: docker exec npm run test
+      - name: Log docker containers
+        run: docker ps -a
+
+      # - name: Run test suite
+      #   run: docker exec npm run test
 
       # - name: Installing Dependencies
       #   run: npm ci
