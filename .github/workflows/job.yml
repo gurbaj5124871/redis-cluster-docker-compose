@@ -9,8 +9,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Build the docker-compose redis cluster stack
-      run: docker-compose -f docker-compose.yml up -d
+    - name: Build the redis instance
+      run: docker-compose -f redis-instance.yml up -d
 
     - name: Check running containers
       run: docker ps -a

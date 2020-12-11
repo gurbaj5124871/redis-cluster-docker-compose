@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  redis-server:
+    image: docker.io/bitnami/redis:latest
+    volumes:
+      - redis-server:/bitnami/redis/data
+    environment:
+      - 'REDIS_PASSWORD=waitroom'
+      - 'REDIS_PORT=6380'
+    ports:
+      - 6380:6380
+
+volumes:
+  redis-server:
+    driver: local
