@@ -51,8 +51,7 @@ const password = "waitroom";
 // );
 
 const redis = new Redis({
-  port: 6380,
-  password,
+  port: 6379,
   db: 0,
 });
 
