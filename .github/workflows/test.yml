@@ -10,7 +10,7 @@ jobs:
   tests:
     name: tests
     runs-on: ubuntu-latest
-    # container: node:12.20.0-alpine3.10
+    container: node:12.20.0-alpine3.10
 
     services:
       redis:
@@ -31,11 +31,6 @@ jobs:
           java-version: '8' # The JDK version to make available on the path.
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
-
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "12.x"
 
       - name: Installing Dependencies
         run: npm ci
