@@ -15,7 +15,13 @@ jobs:
     services:
       redis:
         # Docker Hub image
-        image: bitnami/redis-cluster:latest
+        image: redis
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
   
     steps:
       - uses: actions/checkout@v2
@@ -23,5 +29,10 @@ jobs:
       - name: Installing Dependencies
         run: npm ci
 
-      - name: Running Tests
+      - name: Connect to Redis
         run: node index.js
+        env:
+          # The hostname used to communicate with the Redis service container
+          REDIS_HOST: redis
+          # The default Redis port
+          REDIS_PORT: 6379
