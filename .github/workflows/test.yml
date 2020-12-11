@@ -10,7 +10,7 @@ jobs:
   tests:
     name: tests
     runs-on: ubuntu-latest
-    container: node:12.20.0-alpine3.10
+    # container: node:12.20.0-alpine3.10
 
     services:
       redis:
@@ -22,31 +22,34 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+
+      rocket:
+        container_name: rocket
+        build: .
+        depends_on:
+          - redis
   
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '8' # The JDK version to make available on the path.
-          java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
-          architecture: x64 # (x64 or x86) - defaults to x64
+      - name: Run test suite
+        run: docker exec rocket npm run test
+        
+      # - name: Installing Dependencies
+      #   run: npm ci
 
-      - name: Installing Dependencies
-        run: npm ci
+      # - name: Connect to Redis
+      #   run: node index.js
+      #   env:
+      #     # The hostname used to communicate with the Redis service container
+      #     REDIS_HOST: redis
+      #     # The default Redis port
+      #     REDIS_PORT: 6379
 
-      - name: Connect to Redis
-        run: node index.js
-        env:
-          # The hostname used to communicate with the Redis service container
-          REDIS_HOST: redis
-          # The default Redis port
-          REDIS_PORT: 6379
-
-      - name: Run Tests
-        run: npm run test
-        env:
-          # The hostname used to communicate with the Redis service container
-          REDIS_HOST: redis
-          # The default Redis port
-          REDIS_PORT: 6379
+      # - name: Run Tests
+      #   run: npm run test
+      #   env:
+      #     # The hostname used to communicate with the Redis service container
+      #     REDIS_HOST: redis
+      #     # The default Redis port
+      #     REDIS_PORT: 6379
