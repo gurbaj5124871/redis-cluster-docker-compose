@@ -11,14 +11,12 @@ jobs:
     name: tests
     runs-on: ubuntu-latest
     container: node:12.20.0-alpine3.10
-
-    services:
-      redis:
-        # Docker Hub image
-        image: bitnami/redis-cluster:latest
-
+  
     steps:
       - uses: actions/checkout@v2
+
+      - name: Pull Redis Docker container
+        run: run: docker-compose -f redis-instance.yml up -d
 
       - name: Installing Dependencies
         run: npm ci
