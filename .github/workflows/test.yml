@@ -50,7 +50,3 @@ jobs:
       #     REDIS_HOST: redis
       #     # The default Redis port
       #     REDIS_PORT: 6379
-
-branding:
-  icon: 'check-circle'
-  color: 'green'
