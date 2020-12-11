@@ -26,11 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Docker build for rocket
+      - name: Docker build for rocket and Running Tests
         run: docker build .
-
-      - name: Log docker containers
-        run: docker ps -a
 
       # - name: Run test suite
       #   run: docker exec npm run test
