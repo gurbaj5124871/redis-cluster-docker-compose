@@ -55,9 +55,28 @@ jobs:
           REDIS_PORT_TEST: 6379
 
       - name: Run Tests and Report Tests Coverage Difference
-        uses: mattallty/jest-github-action@v1
+        run: npm run test
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          test-command: npm run test
-          coverage-comment: true
+          # The hostname used to communicate with the Redis service container
+          REDIS_HOST_TEST: redis
+          # The default Redis port
+          REDIS_PORT_TEST: 6379
+
+      - name: Upload Code Coverage
+        run: |
+          bash <(curl -s https://codecov.io/bash) -cF javascript
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      # - uses: codecov/codecov-action@v1
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+
+
+      # - name: Run Tests and Report Tests Coverage Difference
+      #   uses: mattallty/jest-github-action@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     test-command: npm run test
+      #     coverage-comment: true
