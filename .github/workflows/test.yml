@@ -56,3 +56,10 @@ jobs:
 
       - name: Run Tests
         run: npm run test
+
+      - name: Report Tests Coverage Difference
+        id: testCovergae
+        uses: anuraag016/Jest-Coverage-Diff@master
+        with:
+          runCommand: npm run test
+          fullCoverageDiff: true
