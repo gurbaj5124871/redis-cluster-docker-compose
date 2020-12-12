@@ -10,12 +10,12 @@ jobs:
   tests:
     name: tests
     runs-on: ubuntu-latest
-    container: node:12.20.0-alpine3.10
+    container: ubuntu:latest
 
     services:
       redis:
         # Docker Hub image
-        image: bitnami/redis-cluster:latest
+        image: redis:6.0.5
         # Set health checks to wait until redis has started
         options: >-
           --health-cmd "redis-cli ping"
@@ -25,13 +25,41 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
+      # - name: Docker build for rocket and Running Tests
+      #   run: docker build --build-arg REDIS_HOST_TEST="${REDIS_HOST_TEST}"
+      #     --build-arg REDIS_PORT_TEST="${REDIS_PORT_TEST}" .
+      #   env:
+      #     # The hostname used to communicate with the Redis service container
+      #     REDIS_HOST_TEST: redis
+      #     # The default Redis port
+      #     REDIS_PORT_TEST: 6379
+
+      - name: Install Default JRE
+        run: apt-get update && apt-get install -y default-jre && apt-get clean
+
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: "12.x"
 
       - name: Installing Dependencies
         run: npm ci
 
-      - name: Running Tests
+      - name: Connect to Redis
         run: node index.js
+        env:
+          # The hostname used to communicate with the Redis service container
+          REDIS_HOST_TEST: redis
+          # The default Redis port
+          REDIS_PORT_TEST: 6379
+
+      - name: Run Tests
+        run: npm run test
+
+      - name: Report Tests Coverage Difference
+        id: testCovergae
+        uses: anuraag016/Jest-Coverage-Diff@master
+        with:
+          runCommand: npm run test-with-coverage
+          fullCoverageDiff: true

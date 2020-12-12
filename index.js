@@ -51,8 +51,8 @@ const password = "waitroom";
 // );
 
 const redis = new Redis({
-  port: 6380,
-  password,
+  host: process.env.REDIS_HOST_TEST,
+  port: Number.parseInt(process.env.REDIS_PORT_TEST, 10),
   db: 0,
 });
 

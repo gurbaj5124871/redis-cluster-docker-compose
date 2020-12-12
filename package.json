@@ -1,14 +1,22 @@
 {
   "name": "redis-cluster-docker",
   "version": "1.0.0",
-  "description": "",
+  "description": "something to create a pr",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cross-env WR_TABLE_NAME=wrTable REDIS_ENABLED=true jest --runInBand",
+    "test-with-coverage": "cross-env WR_TABLE_NAME=wrTable REDIS_ENABLED=true jest --runInBand --coverage --coverageReporters=\"json-summary\" --coverageDirectory=\"./coverage/\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ioredis": "^4.19.2"
+  },
+  "devDependencies": {
+    "@shelf/jest-dynamodb": "^1.7.0",
+    "aws-sdk": "^2.808.0",
+    "codecov": "^3.8.1",
+    "cross-env": "^7.0.3",
+    "jest": "^26.6.3"
   }
 }
