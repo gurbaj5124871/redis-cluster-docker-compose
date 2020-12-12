@@ -50,8 +50,8 @@ const password = "waitroom";
 //   }
 // );
 
-console.log(`process.env.REDIS_HOST: ${process.env.REDIS_HOST}`);
-console.log(`process.env.REDIS_PORT: ${process.env.REDIS_PORT}`);
+console.log(`process.env.REDIS_HOST_TEST: ${process.env.REDIS_HOST_TEST}`);
+console.log(`process.env.REDIS_PORT_TEST: ${process.env.REDIS_PORT_TEST}`);
 
 const redis = new Redis({
   host: process.env.REDIS_HOST_TEST,
