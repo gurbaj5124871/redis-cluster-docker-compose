@@ -29,9 +29,9 @@ jobs:
         run: docker build .
         env:
           # The hostname used to communicate with the Redis service container
-          REDIS_HOST: redis
+          REDIS_HOST_TEST: redis
           # The default Redis port
-          REDIS_PORT: 6379
+          REDIS_PORT_TEST: 6379
 
       # - name: Installing Dependencies
       #   run: npm ci
