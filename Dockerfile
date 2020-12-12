@@ -11,5 +11,5 @@ ENV REDIS_HOST_TEST $REDIS_HOST_TEST
 ENV REDIS_PORT_TEST $REDIS_PORT_TEST
 
 RUN npm ci
-RUN node node index.js
+RUN node index.js
 RUN npm run test
