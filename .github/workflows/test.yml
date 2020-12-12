@@ -54,10 +54,7 @@ jobs:
           # The default Redis port
           REDIS_PORT_TEST: 6379
 
-      - name: Run Tests
-        run: npm run test
-
-      - name: Report Tests Coverage Difference
+      - name: Run Tests and Report Tests Coverage Difference
         uses: mattallty/jest-github-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
