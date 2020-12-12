@@ -30,6 +30,12 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
+      - name: Report Tests Coverage Difference
+        id: testCovergae
+        uses: anuraag016/Jest-Coverage-Diff@master
+        with:
+          fullCoverageDiff: false
+
       # - name: Installing Dependencies
       #   run: npm ci
 

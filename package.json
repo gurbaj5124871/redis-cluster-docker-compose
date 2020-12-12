@@ -4,7 +4,7 @@
   "description": "something to create a pr",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env WR_TABLE_NAME=wrTable REDIS_ENABLED=true jest --runInBand && codecov"
+    "test": "cross-env WR_TABLE_NAME=wrTable REDIS_ENABLED=true jest --runInBand"
   },
   "author": "",
   "license": "ISC",
