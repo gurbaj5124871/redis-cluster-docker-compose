@@ -49,7 +49,7 @@ const password = "waitroom";
 //     },
 //   }
 // );
-
+console.log(`process.env: ${JSON.stringify(process.env)}`);
 console.log(`process.env.REDIS_HOST_TEST: ${process.env.REDIS_HOST_TEST}`);
 console.log(`process.env.REDIS_PORT_TEST: ${process.env.REDIS_PORT_TEST}`);
 
