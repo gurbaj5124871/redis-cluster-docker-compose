@@ -58,8 +58,8 @@ jobs:
         run: npm run test
 
       - name: Report Tests Coverage Difference
-        id: testCovergae
-        uses: anuraag016/Jest-Coverage-Diff@master
+        uses: mattallty/jest-github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          runCommand: npm run test-with-coverage
-          fullCoverageDiff: true
+          test-command: npm run test-with-coverage
