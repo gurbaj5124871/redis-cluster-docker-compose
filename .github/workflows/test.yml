@@ -25,27 +25,22 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Docker build for rocket and Running Tests
-        run: docker build .
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Report Tests Coverage Difference
-        id: testCovergae
-        uses: anuraag016/Jest-Coverage-Diff@master
-        with:
-          fullCoverageDiff: false
+      # - name: Docker build for rocket and Running Tests
+      #   run: docker build .
+      #   env:
+      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       # - name: Installing Dependencies
       #   run: npm ci
 
-      # - name: Connect to Redis
-      #   run: node index.js
-      #   env:
-      #     # The hostname used to communicate with the Redis service container
-      #     REDIS_HOST: redis
-      #     # The default Redis port
-      #     REDIS_PORT: 6379
+      - name: Connect to Redis
+        uses: docker://node:12.20.0-alpine3.10
+        run: npm ci && node index.js
+        env:
+          # The hostname used to communicate with the Redis service container
+          REDIS_HOST: redis
+          # The default Redis port
+          REDIS_PORT: 6379
 
       # - name: Run Tests
       #   run: npm run test
