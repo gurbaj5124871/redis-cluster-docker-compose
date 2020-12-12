@@ -10,6 +10,7 @@ jobs:
   tests:
     name: tests
     runs-on: ubuntu-latest
+    container: ubuntu:latest
 
     services:
       redis:
@@ -25,31 +26,33 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Docker build for rocket and Running Tests
-        run: docker build --build-arg REDIS_HOST_TEST="${REDIS_HOST_TEST}"
-          --build-arg REDIS_PORT_TEST="${REDIS_PORT_TEST}" .
+      # - name: Docker build for rocket and Running Tests
+      #   run: docker build --build-arg REDIS_HOST_TEST="${REDIS_HOST_TEST}"
+      #     --build-arg REDIS_PORT_TEST="${REDIS_PORT_TEST}" .
+      #   env:
+      #     # The hostname used to communicate with the Redis service container
+      #     REDIS_HOST_TEST: redis
+      #     # The default Redis port
+      #     REDIS_PORT_TEST: 6379
+
+      - name: Install Default JRE
+        run: apt-get install -y default-jre
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+
+      - name: Installing Dependencies
+        run: npm ci
+
+      - name: Connect to Redis
+        run: node index.js
         env:
           # The hostname used to communicate with the Redis service container
           REDIS_HOST_TEST: redis
           # The default Redis port
           REDIS_PORT_TEST: 6379
 
-      # - name: Installing Dependencies
-      #   run: npm ci
-
-      # - name: Connect to Redis
-      #   uses: docker://node:12.20.0-alpine3.10
-      #   run: npm ci && node index.js
-      #   env:
-      #     # The hostname used to communicate with the Redis service container
-      #     REDIS_HOST: redis
-      #     # The default Redis port
-      #     REDIS_PORT: 6379
-
-      # - name: Run Tests
-      #   run: npm run test
-      #   env:
-      #     # The hostname used to communicate with the Redis service container
-      #     REDIS_HOST: redis
-      #     # The default Redis port
-      #     REDIS_PORT: 6379
+      - name: Run Tests
+        run: npm run test
