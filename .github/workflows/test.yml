@@ -26,7 +26,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Docker build for rocket and Running Tests
-        run: docker build .
+        run: docker build --build-arg REDIS_HOST_TEST="${REDIS_HOST_TEST}"
+          --build-arg REDIS_PORT_TEST="${REDIS_PORT_TEST}" .
         env:
           # The hostname used to communicate with the Redis service container
           REDIS_HOST_TEST: redis
