@@ -55,7 +55,7 @@ console.log(`process.env.REDIS_PORT_TEST: ${process.env.REDIS_PORT_TEST}`);
 
 const redis = new Redis({
   host: process.env.REDIS_HOST_TEST,
-  port: process.env.REDIS_PORT_TEST,
+  port: Number.parseInt(process.env.REDIS_PORT_TEST, 10),
   db: 0,
 });
 
