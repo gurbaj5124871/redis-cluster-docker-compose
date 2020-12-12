@@ -36,7 +36,7 @@ jobs:
       #     REDIS_PORT_TEST: 6379
 
       - name: Install Default JRE
-        run: apt-get install -y default-jre
+        run: apt-get update && apt-get install -y default-jre && apt-get clean
 
       - name: Use Node.js
         uses: actions/setup-node@v1
