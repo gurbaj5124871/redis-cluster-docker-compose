@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env WR_TABLE_NAME=wrTable REDIS_ENABLED=true jest --runInBand",
-    "test-with-coverage": "cross-env WR_TABLE_NAME=wrTable REDIS_ENABLED=true jest --runInBand --coverage --coverageReporters=\"json-summary\" --coverageDirectory=\"./coverage/\""
+    "test-with-coverage": "cross-env WR_TABLE_NAME=wrTable REDIS_ENABLED=true jest --runInBand --coverage --coverageReporters=\"json-summary\" --coverageDirectory=\"./\""
   },
   "author": "",
   "license": "ISC",
