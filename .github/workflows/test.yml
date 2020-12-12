@@ -61,5 +61,5 @@ jobs:
         id: testCovergae
         uses: anuraag016/Jest-Coverage-Diff@master
         with:
-          runCommand: npm run test
+          runCommand: npm run test-with-coverage
           fullCoverageDiff: true

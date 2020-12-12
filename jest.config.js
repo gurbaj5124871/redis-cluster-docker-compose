@@ -5,7 +5,4 @@ module.exports = {
   rootDir: "./",
   testMatch: ["<rootDir>/__tests__/*.test.js"],
   moduleFileExtensions: ["js"],
-  coverageDirectory: "./coverage/",
-  collectCoverage: true,
-  coverageReporters: ["lcov", "html"],
 };

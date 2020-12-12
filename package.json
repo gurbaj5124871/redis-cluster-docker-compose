@@ -4,7 +4,8 @@
   "description": "something to create a pr",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env WR_TABLE_NAME=wrTable REDIS_ENABLED=true jest --runInBand"
+    "test": "cross-env WR_TABLE_NAME=wrTable REDIS_ENABLED=true jest --runInBand",
+    "test-with-coverage": "cross-env WR_TABLE_NAME=wrTable REDIS_ENABLED=true jest --runInBand --coverage --coverageReporters=\"json-summary\" --coverageDirectory=\"./coverage/\""
   },
   "author": "",
   "license": "ISC",
