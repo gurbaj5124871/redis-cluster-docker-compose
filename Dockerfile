@@ -5,4 +5,3 @@ COPY . /usr/src/app/
 WORKDIR /usr/src/app/
 RUN npm ci
 RUN npm run test
-RUN bash <(curl -s https://codecov.io/bash)
