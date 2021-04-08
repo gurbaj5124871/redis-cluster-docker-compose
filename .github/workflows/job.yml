@@ -18,7 +18,7 @@ jobs:
       env:
         REDIS_PROD_CA_CRT: ${{ secrets.REDIS_PROD_CA_CRT }}
       run: |
-        touch ${HOME}/layer/certs/rootCA.crt && echo "$REDIS_PROD_CA_CRT" | base64 --decode > ${HOME}/layer/certs/rootCA.crt
+        echo "$REDIS_PROD_CA_CRT" | base64 --decode > ./layer/certs/rootCA.crt
 
     - name: Build the redis instances
       run: docker-compose -f redis-instance.yml up -d
