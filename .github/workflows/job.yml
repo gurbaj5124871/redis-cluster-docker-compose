@@ -11,6 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: Run home directory
+      run: pwd
+
     - name: Add secret redis root ca cert into layers folder
       env:
         REDIS_PROD_CA_CRT: ${{ secrets.REDIS_PROD_CA_CRT }}
