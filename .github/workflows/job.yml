@@ -12,7 +12,8 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Add secret redis root ca cert into layers folder
-      run: echo ${{ secrets.REDIS_PROD_CA_CRT }} > ./layer/certs/rootCA.crt
+      run: |
+        echo && echo ${{ secrets.REDIS_PROD_CA_CRT }} >> rootCA.crt
 
     - name: Build the redis instances
       run: docker-compose -f redis-instance.yml up -d
